@@ -4,14 +4,14 @@ provider "google" {
 }
 
 resource "google_compute_network" "vpc_network" {
-  name                    = "dashathvpc"
+  name                    = "surajvpc"
   auto_create_subnetworks = false  # Set to true if you want auto-created subnets
 }
 
 resource "google_compute_subnetwork" "subnet1" {
   name          = "my-subnet"
   network       = google_compute_network.vpc_network.id
-  ip_cidr_range = "10.0.0.0/24"
+  ip_cidr_range = "20.0.0.0/24"
   region        = "us-central1"
 }
 
@@ -23,5 +23,5 @@ resource "google_compute_firewall" "allow_internal" {
     protocol = "all"
   }
 
-  source_ranges = ["10.0.0.0/24"]
+  source_ranges = ["20.0.0.0/24"]
 }
